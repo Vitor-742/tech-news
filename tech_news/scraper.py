@@ -1,5 +1,6 @@
 import requests
 import time
+from parsel import Selector
 
 
 # Requisito 1 - "https://www.betrybe.com/"
@@ -15,12 +16,14 @@ def fetch(url):
         return None
     if(response.status_code != 200):
         return None
-    return response.text  # ou content
+    return response.text
 
 
 # Requisito 2
 def scrape_novidades(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(text=html_content)
+    links = selector.css(".entry-title a::attr(href)").getall()
+    return links
 
 
 # Requisito 3
