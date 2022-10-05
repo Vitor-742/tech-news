@@ -58,13 +58,12 @@ def get_tech_news(amount):
         noticias = scrape_novidades(pagina)
         all_links = all_links + noticias
         next_page = scrape_next_page_link(pagina)
-        if(next_page == None):
+        if(next_page is None):
             break
         next_page_link = next_page
     my_news = []
     for link in range(amount):
         fetch_noticia = fetch(all_links[link])
         my_news.append(scrape_noticia(fetch_noticia))
-    
     create_news(my_news)
     return my_news
