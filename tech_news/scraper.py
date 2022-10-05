@@ -33,7 +33,8 @@ def scrape_next_page_link(html_content):
 
 def scrape_noticia(html_content):
     selector = Selector(text=html_content)
-    summary = ''.join(selector.css(".entry-content > p:nth-of-type(1) *::text").getall())
+    query_css = ".entry-content > p:nth-of-type(1) *::text"
+    summary = ''.join(selector.css(query_css).getall())
     return {
         "url": selector.css('link[rel=canonical]::attr(href)').get(),
         "title": selector.css('.entry-title::text').get().strip(),
