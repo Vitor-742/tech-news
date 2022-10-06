@@ -7,7 +7,6 @@ def search_by_title(title):
     find_news = search_news({'title': {"$regex": title, '$options': 'i'}})
     # find_news = search_news({'title': f'/^{title}$/i'})
     list_news = []
-    print(find_news)
     for news in find_news:
         list_news.append((news['title'], news['url']))
     return list_news
@@ -20,7 +19,6 @@ def search_by_date(date):
         date_time = datetime.strptime(date, '%Y-%m-%d')
         data = date_time.strftime("%d/%m/%Y")
         find_news = search_news({'timestamp': data})
-        print(find_news)
         list_news = []
         for news in find_news:
             list_news.append((news['title'], news['url']))
@@ -31,7 +29,12 @@ def search_by_date(date):
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    find_news = search_news({'tags': {"$regex": tag, '$options': 'i'}})
+    # find_news = search_news({'title': f'/^{title}$/i'})
+    list_news = []
+    for news in find_news:
+        list_news.append((news['title'], news['url']))
+    return list_news
 
 
 # Requisito 9
