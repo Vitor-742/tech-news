@@ -5,7 +5,6 @@ from tech_news.database import create_news
 import math
 
 
-# Requisito 1 - "https://www.betrybe.com/"
 def fetch(url):
     time.sleep(1)
     try:
